@@ -13,9 +13,13 @@
     const name = 'Alice'
     const age = 30
 
+    // const user = {
+    //   name: name,
+    //   age: age
+    // }
+
     const user = {
-      name: name,
-      age: age
+      name, age
     }
 
     // 2. 단축 메서드
@@ -50,7 +54,7 @@
       userId: 'alice123',
       email: 'alice123@gmail.com'
     }
-
+    // # 변수 명과 키 값 동일해야함
     // const firstName = userInfo.name
     // const userId = userInfo.userId
     // const email = userInfo.email
@@ -63,9 +67,15 @@
     console.log(firstName, userId, email)
 
     // 구조 분해 할당 활용 - 함수 매개변수
+    // function printInfo(userInfo) {
+    //   console.log(`이름: ${userInfo.name}, 나이: ${userInfo.age}, 도시: ${userInfo.city}`)
+    // }
+    // printInfo(userInfo)
+
     function printInfo({ name, age, city }) {
       console.log(`이름: ${name}, 나이: ${age}, 도시: ${city}`)
     }
+    printInfo(userInfo)
 
     const person = {
       name: 'Bob',
@@ -77,9 +87,9 @@
     printInfo(person) // '이름: Bob, 나이: 35, 도시: London'
 
     // 5. 전개 구문
-    const obj = { b: 2, c: 3, d: 4 }
-    const newObj = { a: 1, ...obj, e: 5 }
-    console.log(newObj) // {a: 1, b: 2, c: 3, d: 4, e: 5}
+    const obj = { a: 2, c: 3, d: 4 }
+    const newObj = { a: 1, ...obj, e: 5 } // 순서중요
+    console.log(newObj) // {a: 2, c: 3, d: 4, e: 5}
 
     // 6. 유용한 객체 메서드
     const profile = {
