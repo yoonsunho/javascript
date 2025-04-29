@@ -41,11 +41,16 @@
     const outerOuterElement = document.querySelector('#outerouter')
 
     const clickHandler = function (event) {
-      console.log('currentTarget:', event.currentTarget.id)
-      console.log('target:', event.target.id)
+      if(event.target.id =='inner'){    // 이렇게 조건문 쓸 수 있음
+        console.log('target:', event.target.id)
+      }    
     }
 
     outerOuterElement.addEventListener('click', clickHandler)
+
+    // inner 클릭 시
+    // currentTarget: outerouter
+    // target: inner
   </script>
 </body>
 
