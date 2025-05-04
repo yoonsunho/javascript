@@ -21,11 +21,11 @@
     console.log(promiseObj) // Promise object
 
     promiseObj
-      .then((response) => {
+      .then((response) => {  //성공시
         console.log(response) // Response object
         console.log(response.data)  // Response data
       })
-      .catch((error) => {
+      .catch((error) => {   //실패시
         console.error(error)
       })
 
