@@ -100,10 +100,10 @@ def likes(request, article_pk):
     article = Article.objects.get(pk=article_pk)
     if request.user in article.like_users.all():
         article.like_users.remove(request.user)
-        is_like = False
+        is_like = False #
     else:
         article.like_users.add(request.user)
-        is_like = True
+        is_like = True  #
     context = {
         'is_like': is_like
     }
