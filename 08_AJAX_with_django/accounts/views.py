@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login as auth_login
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.decorators import login_required
-# django와 http에 맞춰서 JSON 형태의 데이터를 Response할 수 있도록 해주는는
+# django와 http에 맞춰서 JSON 형태의 데이터를 Response할 수 있도록 해주는
 from django.http import JsonResponse
 
 from .forms import CustomUserCreationForm, CustomUserChangeForm
@@ -115,8 +115,8 @@ def follow(request, user_pk):
     person = User.objects.get(pk=user_pk)
     if person != request.user:
         if person.followers.filter(pk=request.user.pk).exists():
-            person.followers.remove(request.user)
-            is_follow = False
+            person.followers.remove(request.user)   # 팔로우 취소
+            is_follow = False       # 현재 팔로우 여부 false 로 바꿔주기
         else:
             person.followers.add(request.user)
             is_follow = True
