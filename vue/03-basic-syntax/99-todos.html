@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- v-model, v-on, v-bind, v-for를 활용한 todo 애플리케이션 구현 -->
+  <div id="app">
+    <select v-model="isSeleted">
+      <option value="all">전체</option>
+      <option value="completed">완료됨</option>
+      <option value="is-progress">작업중</option>
+
+    </select>
+    <!-- 사용자 입력란 만들기 -->
+     <!-- v-model로 양방향 바인딩 할 수 있다
+      input에 사용자가 입력한 값이 newTodo 변수에도,
+      newTodo 변수의 값이 변동하면 그 값이 input 의 value에도 양방향으로 반영된다 -->
+      
+    <input type="text" v-model="newTodo">
+    <button @click="addTodo">+</button>
+    <p>{{newTodo}}</p>
+    <ul>
+      <template v-for="(item,index) in filteredTodos"
+      :key="item.id">
+      <li>{{index}}-{{item.text}}</li>
+      <button @click="deleteTodo(item)">delete</button>
+    </template>
+    </ul>
+  </div>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script>
+    const { createApp, ref, computed } = Vue
+
+    const app = createApp({
+      setup() {
+        let id = 0
+        const isSeleted = ref('all')
+        const newTodo = ref(null)
+        const todos = ref([
+          { id: id++, text: 'Learn HTML', isCompleted: true, isCompleted:true},
+          { id: id++, text: 'Learn JS', isCompleted: true, isCompleted:true},
+          { id: id++, text: 'Learn Vue', isCompleted: false, isCompleted:false}
+        ])
+
+        const filteredTodos = computed(()=>{
+          if (isSeleted.value === "completed"){
+            return todos.value.filter(todo=>todo.completed)
+          }else if(isSeleted.value ==='in-progress'){
+            return todo.value.filger(todo=>!todo.isCompleted)
+          }
+          return todos.value
+        })
+
+        // addTodo 함수
+        const addTodo = function(){
+          // todos배열에 사용자가 입력한 값 추가
+          const data = {
+            id: id++,
+            text: newTodo.value,
+            isCompleted:true
+          }
+          todos.value.push(data)
+          newTodo.value= ''
+        }
+
+        // removeTodo 함수
+        // ? 특정 요소 어떻게 삭제하지?
+        const deleteTodo = function(selectedTodo){
+          // 원본 todos가 가진 목록들 중에,
+          // 지금 선택된 todo 빼고 다시 배열 재구성
+          todos.value = todos.value.filter(function(todo){
+            return todo !== selectedTodo
+          })
+        }
+
+        return{
+          newTodo,todos,
+          addTodo,deleteTodo
+        }
+        
+      }
+    })
+
+    app.mount('#app')
+  </script>
+</body>
+
+</html>
