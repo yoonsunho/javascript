@@ -13,6 +13,8 @@ import HelloWorld from './components/HelloWorld.vue'
       <nav>
         <!-- to 속성엔 문자열로 path를 작성하도록 되어있다 -->
         <!-- to 속성에 route에 정의된 어떤 name이 무엇인것을 연결 -->
+        <RouterLink :to="{name:'login'}">Login</RouterLink>
+        <!-- 로그인 기능을 만들어 냈다고 가정하고.. -->
         <RouterLink :to="{name:'home'}">Home</RouterLink>
         <RouterLink :to="{name:'about'}">About</RouterLink>
         <RouterLink :to="{name:'user', params:{'id':1}}">User</RouterLink>
