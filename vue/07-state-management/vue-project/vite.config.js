@@ -11,7 +11,7 @@ export default defineConfig({
     vueDevTools(),
   ],
   resolve: {
-    alias: {
+    alias: {//@는 ./src로 볼거야(baseDir 과 유사 역할)
       '@': fileURLToPath(new URL('./src', import.meta.url))
     },
   },
